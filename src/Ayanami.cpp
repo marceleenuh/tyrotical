@@ -8,7 +8,7 @@ int main(void) {
 
     uint32_t extensionCount = 0;
     vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-    printf("%d extensions supported", extensionCount);
+    printf("%d extensions supported\n", extensionCount);
 
     glm::mat4 matrix;
     glm::vec4 vec;
@@ -19,7 +19,6 @@ int main(void) {
     }
 
     glfwDestroyWindow(window);
-
     glfwTerminate();
 
     return 0;

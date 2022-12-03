@@ -5,7 +5,7 @@
 <div align="center">
 
     Tyrotical
-    My extremely barebones Vulkan rasterized renderer
+    My extremely barebones Vulkan rendering engine
 
 </div>
 <div align="center">
