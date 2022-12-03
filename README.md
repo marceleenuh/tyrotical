@@ -6,7 +6,6 @@
 
     Tyrotical
     My extremely barebones Vulkan rendering engine
-
 </div>
 <div align="center">
 
