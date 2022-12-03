@@ -13,8 +13,9 @@
     How to Build Tyrotical
 
     1. Configure CMake in ./build and set build type to Release. 
-    Also set VULKAN_PATH to whereever your Vulkan SDK is installed.": $ cmake -B build -DVULKAN_PATH="C:/VulkanSDK/1.3.211.0"
-    2. Build: $ cmake --build build --config Release
+    Also set VULKAN_PATH to whereever your Vulkan SDK is installed." with:
+    $ cmake -B build -DVULKAN_PATH="C:/VulkanSDK/1.3.211.0"
+    2. Build with: $ cmake --build build --config Release
     3. For MSVC the built binary will be in ./build/Release/tyrotical.exe
 </div>
 
