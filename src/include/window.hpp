@@ -14,11 +14,14 @@ namespace Tyrotical {
         Window(int width, int height, const char* windowTitle);
         ~Window();
 
+        Window(const Window&) = delete;
+        Window &operator=(const Window) = delete;
+
         bool closed() { return glfwWindowShouldClose(_window); }
+        void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
         void setIcon(const char* filepath);
         void setIcon(Image& img);
     private:
-
         void createWindow();
 
         const int _width, _height;

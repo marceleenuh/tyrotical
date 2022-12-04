@@ -1,7 +1,14 @@
 #pragma once
 #include <cstdio>
 #include <cstdlib>
+#include <fstream>
 #include <stdexcept>
+#include <string>
+#include <vector>
+#include <cstring>
+#include <iostream>
+#include <set>
+#include <unordered_set>
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>

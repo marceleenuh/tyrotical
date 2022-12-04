@@ -17,7 +17,9 @@ project(tyrotical CXX)
 add_executable(
     tyrotical
     src/Ayanami.cpp
+    src/device.cpp
     src/window.cpp
+    src/pipeline.cpp
     src/tyrotical.cpp
 )
 

@@ -23,6 +23,12 @@ namespace Tyrotical {
         _window = glfwCreateWindow(_width, _height, _windowTitle, nullptr, nullptr);
     }
 
+    void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface) {
+        if (glfwCreateWindowSurface(instance, _window, nullptr, surface) != VK_SUCCESS) {
+            throw std::runtime_error("[Error] Failed to create window surface.");
+        }
+    }
+
     void Window::setIcon(const char* filepath) {
         _icon.pixels = stbi_load(filepath, &_icon.width, &_icon.height, &_icon.channels, 4);
 
