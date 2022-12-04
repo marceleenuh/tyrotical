@@ -22,7 +22,7 @@ namespace Tyrotical {
         #else
         printf("[Error] Couldn't hide console window.");
         #endif
-    };
+    }
 
     static inline void showConsole() {
         #ifdef _WIN32
@@ -30,5 +30,5 @@ namespace Tyrotical {
         #else
         printf("[Error] Couldn't show console window.");
         #endif
-    };
+    }
 }

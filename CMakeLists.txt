@@ -17,6 +17,8 @@ project(tyrotical CXX)
 add_executable(
     tyrotical
     src/Ayanami.cpp
+    src/window.cpp
+    src/tyrotical.cpp
 )
 
 target_include_directories(tyrotical PRIVATE ${INCLUDE_DIR} vendor/include ${VULKAN_PATH}/Include)
