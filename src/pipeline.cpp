@@ -33,8 +33,8 @@ namespace Tyrotical {
     }
 
     void Pipeline::createGraphicsPipeline(const PipelineConfigInfo& config, const char* vertexShaderPath, const char* fragmentShaderPath) {
-        assert(configInfo.pipelineLayout != VK_NULL_HANDLE && "[Error] Failed to create graphics pipeline: missing pipelineLayout in configInfo");
-        assert(configInfo.renderPass != VK_NULL_HANDLE && "[Error] Failed to create graphics pipeline: missing renderPass in configInfo");
+        assert(config.pipelineLayout != VK_NULL_HANDLE && "[Error] Failed to create graphics pipeline: missing pipelineLayout in configInfo");
+        assert(config.renderPass != VK_NULL_HANDLE && "[Error] Failed to create graphics pipeline: missing renderPass in configInfo");
         
         char* vertexCode = fileContents(vertexShaderPath);
         char* fragmentCode = fileContents(fragmentShaderPath);
@@ -66,18 +66,26 @@ namespace Tyrotical {
         vertexInputInfo.pVertexAttributeDescriptions = nullptr;
         vertexInputInfo.pVertexBindingDescriptions = nullptr;
 
+        VkPipelineViewportStateCreateInfo viewportInfo{};
+        viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+        viewportInfo.viewportCount = 1;
+        viewportInfo.pViewports = &config.viewport;
+        viewportInfo.scissorCount = 1;
+        viewportInfo.pScissors = &config.scissor;
+
         VkGraphicsPipelineCreateInfo pipelineInfo{};
         pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
         pipelineInfo.stageCount = 2;
         pipelineInfo.pStages = shaderStages;
         pipelineInfo.pVertexInputState = &vertexInputInfo;
         pipelineInfo.pInputAssemblyState = &config.inputAssemblyInfo;
-        pipelineInfo.pViewportState = &config.viewportInfo;
+        pipelineInfo.pViewportState = &viewportInfo;
         pipelineInfo.pRasterizationState = &config.rasterizationInfo;
         pipelineInfo.pMultisampleState = &config.multisampleInfo;
         pipelineInfo.pColorBlendState = &config.colorBlendInfo;
         pipelineInfo.pDepthStencilState = &config.depthStencilInfo;
         pipelineInfo.pDynamicState = nullptr;
+
 
         pipelineInfo.layout = config.pipelineLayout;
         pipelineInfo.renderPass = config.renderPass;
@@ -121,12 +129,6 @@ namespace Tyrotical {
         
         configInfo.scissor.offset = {0, 0};
         configInfo.scissor.extent = {width, height};
-        
-        configInfo.viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-        configInfo.viewportInfo.viewportCount = 1;
-        configInfo.viewportInfo.pViewports = &configInfo.viewport;
-        configInfo.viewportInfo.scissorCount = 1;
-        configInfo.viewportInfo.pScissors = &configInfo.scissor;
         
         configInfo.rasterizationInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
         configInfo.rasterizationInfo.depthClampEnable = VK_FALSE;

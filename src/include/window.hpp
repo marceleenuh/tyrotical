@@ -18,6 +18,7 @@ namespace Tyrotical {
         Window &operator=(const Window) = delete;
 
         bool closed() { return glfwWindowShouldClose(_window); }
+        VkExtent2D getExtent() { return {static_cast<uint32_t>(_width), static_cast<uint32_t>(_height)}; }
         void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
         void setIcon(const char* filepath);
         void setIcon(Image& img);
