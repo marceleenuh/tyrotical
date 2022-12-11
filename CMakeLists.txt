@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 set(INCLUDE_DIR src/include)
 set(CMAKE_EXPORT_COMPILE_COMANDS on)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED 20)
 set(CMAKE_BUILD_TYPE "Debug")
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-O3")
@@ -20,8 +20,8 @@ add_executable(
     src/device.cpp
     src/window.cpp
     src/pipeline.cpp
-    src/tyrotical.cpp
     src/swapchain.cpp
+    src/tyrotical.cpp
 )
 
 target_include_directories(tyrotical PRIVATE ${INCLUDE_DIR} vendor/include ${VULKAN_PATH}/Include)

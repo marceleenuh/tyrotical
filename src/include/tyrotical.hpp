@@ -30,6 +30,6 @@ namespace Tyrotical {
         SwapChain _swapChain{_device, _window.getExtent()};
         std::unique_ptr<Pipeline> _pipeline;
         VkPipelineLayout _pipelineLayout;
-        std::vector<VkCommandBuffer> _commandBuffer;
+        std::vector<VkCommandBuffer> _commandBuffers;
     };
 }

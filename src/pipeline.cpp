@@ -12,11 +12,15 @@ namespace Tyrotical {
         vkDestroyPipeline(_device.device(), _pipeline, nullptr);
     }
 
+    void Pipeline::bind(VkCommandBuffer commandBuffer) {
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, _pipeline);
+    }
+
     std::vector<char> Pipeline::fileContents(const char* filepath) {
         std::ifstream file{filepath, std::ios::ate | std::ios::binary};
 
         if (!file.is_open()) {
-            char* buf;
+            char buf[512];
             sprintf(buf, "failed to open file: %s", filepath);
             throw std::runtime_error(buf);
         }
@@ -74,9 +78,7 @@ namespace Tyrotical {
 
         VkPipelineColorBlendStateCreateInfo colorBlendInfo{};
         VkPipelineColorBlendAttachmentState colorBlendAttachment{};
-        colorBlendAttachment.colorWriteMask =
-            VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT |
-            VK_COLOR_COMPONENT_A_BIT;
+        colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
         colorBlendAttachment.blendEnable = VK_FALSE;
         colorBlendAttachment.srcColorBlendFactor = VK_BLEND_FACTOR_ONE;   // Optional
         colorBlendAttachment.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO;  // Optional
@@ -107,7 +109,6 @@ namespace Tyrotical {
         pipelineInfo.pColorBlendState = &colorBlendInfo;
         pipelineInfo.pDepthStencilState = &config.depthStencilInfo;
         pipelineInfo.pDynamicState = nullptr;
-
 
         pipelineInfo.layout = config.pipelineLayout;
         pipelineInfo.renderPass = config.renderPass;

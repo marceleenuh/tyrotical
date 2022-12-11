@@ -25,6 +25,7 @@ namespace Tyrotical {
         Pipeline& operator=(const Pipeline&) = delete;
 
         static PipelineConfigInfo defaultConfig(uint32_t width, uint32_t height);
+        void bind(VkCommandBuffer commandBuffer);
 
     private:
         static std::vector<char> fileContents(const char* filepath);
